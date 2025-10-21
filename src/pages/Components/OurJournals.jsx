@@ -47,7 +47,7 @@ export const OurJournals = () => {
             <div
               className={`col-md-6 d-flex justify-content-center `}
             >
-              <div className="w-75">
+              <div className={`w-100 ${isOdd ? "text-start" : "text-end"}`}>
                 <img
                   src={`${BASE_URL}/${j.coverImage}`}
                   alt={j.title}

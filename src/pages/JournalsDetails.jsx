@@ -13,7 +13,7 @@ export const JournalsDetails = () => {
   useEffect(() => {
     const fetchJournal = async () => {
       try {
-        const res = await axios.get(`${API_URL}/journals/${id}`);
+        const res = await axios.get(`${API_URL}/journals/v2/${id}`);
         if (res.data.success) {
           setJournal(res.data.data);
         }

@@ -7,6 +7,7 @@ export const Journals = () => {
     <div style={{ backgroundColor: "#E5F2F8" }}>
     <SubSlider />
     <OurJournals />
+    
     </div>
   )
 }

@@ -2,6 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export const JournalDetialsCom = ({ journal }) => {
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   const truncateText = (text, maxLength = 300) => {
     if (!text) return "";
     const plainText = text.replace(/<\/?[^>]+(>|$)/g, ""); // Strip HTML tags
@@ -74,7 +76,10 @@ export const JournalDetialsCom = ({ journal }) => {
               <div className="col-md-6 mb-3" key={editor._id}>
                 <div className="profile-card">
                   <div className="profile-img">
-                    <i className="fa-regular fa-user" />
+                    <img 
+                    src={`${BASE_URL}/${editor.coverImage}` }
+                    className="w-75 rounded-3"
+                    alt="" />
                   </div>
                   <div className="profile-info">
                     <h5>{editor.firstName} {editor.lastName}</h5>
@@ -111,7 +116,8 @@ export const JournalDetialsCom = ({ journal }) => {
             {journal.articles.map((article) => (
               <div className="article-card row align-items-center mb-3" key={article._id}>
                 <div className="col-md-4">
-                  <img src={article.image || "/assets/img/service/card-1.png"} alt={article.title} className="img-fluid"/>
+                  
+                  <img src={`${BASE_URL}/${article.coverImage}` || "/assets/img/service/card-1.png"} alt={article.title} className="img-fluid rounded-3 shadow"/>
                 </div>
                 <div className="col-md-8">
                   <h5>{article.title}</h5>
@@ -132,7 +138,7 @@ export const JournalDetialsCom = ({ journal }) => {
                       <span className="ms-3"><i className="fa-solid fa-download" /> {article.downloads}</span>
                     </div>
                     <div>
-                      <Link to={`/articles/${article._id}/abstract`} className="article-btn me-2">Abstract</Link>
+                      <Link to={`/articles/abstract/${article._id}`} className="article-btn me-2">Abstract</Link>
                       <Link to={article.pdfUrl} target="_blank" className="article-btn">PDF</Link>
                     </div>
                   </div>

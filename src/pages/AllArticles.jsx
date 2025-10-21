@@ -3,6 +3,7 @@ import { SubSlider } from "./Components/SubSlider";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useJournal } from "./contexts/journalContext";
 import axios from "axios";
+import jsPDF from "jspdf";
 
 export const AllArticles = () => {
   const { journals } = useJournal();
@@ -15,11 +16,13 @@ export const AllArticles = () => {
   const [articles, setArticles] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  const API_URL = import.meta.env.VITE_API_URL;
+  const BASE_URL = import.meta.env.VITE_BASE_URL;
+
   useEffect(() => {
     if (!journalId) return;
     const fetchJournal = async () => {
       try {
-        const API_URL = import.meta.env.VITE_API_URL;
         const res = await axios.get(`${API_URL}/journals/v2/${journalId}`);
         if (res.data.success) {
           const data = res.data.data;
@@ -47,13 +50,6 @@ export const AllArticles = () => {
     setActiveIssue(vol?.issues[0]?._id || "");
   };
 
-  const filteredArticles = articles.filter((a) => {
-    let matches = a.title.toLowerCase().includes(searchText.toLowerCase());
-    if (selectedVolume) matches = matches && a.volume === selectedVolume;
-    if (activeIssue) matches = matches && a.issue === activeIssue;
-    return matches;
-  });
-
   const truncateText = (text, maxLength = 300) => {
     if (!text) return "";
     const plainText = text.replace(/<\/?[^>]+(>|$)/g, "");
@@ -61,6 +57,46 @@ export const AllArticles = () => {
   };
 
   const currentVolume = selectedJournal?.volumes.find((v) => v._id === selectedVolume);
+
+  const filteredArticles = articles.filter((a) => {
+    let matches = a.title.toLowerCase().includes(searchText.toLowerCase());
+    if (selectedVolume) matches = matches && a.volume === selectedVolume;
+    if (activeIssue) matches = matches && a.issue === activeIssue;
+    return matches;
+  });
+
+  const handlePrintPDF = async (article) => {
+    if (!article) return;
+
+    // Increment download count
+    try {
+      await axios.patch(`${API_URL}/articles/download/${article._id}`);
+      setArticles((prev) =>
+        prev.map((a) =>
+          a._id === article._id ? { ...a, downloads: (a.downloads || 0) + 1 } : a
+        )
+      );
+    } catch (err) {
+      console.error("Failed to increment download count:", err);
+    }
+
+    // Generate PDF
+    const doc = new jsPDF();
+    const content = `
+${article.title}
+
+Author: ${article.author}
+Type: ${article.articleType}
+Journal: ${article.journal?.title}
+Published: ${article.publishedAt ? new Date(article.publishedAt).toLocaleDateString() : ''}
+
+Abstract:
+${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
+    `;
+    doc.setFontSize(12);
+    doc.text(content, 10, 10, { maxWidth: 190 });
+    doc.save(`${article.title}.pdf`);
+  };
 
   return (
     <div>
@@ -74,8 +110,7 @@ export const AllArticles = () => {
         {/* --- Dropdowns --- */}
         <div className="container mb-4">
           <div className="d-flex flex-wrap justify-content-between align-items-center gap-2">
-            {/* Journal Dropdown */}
-            <div className="form-group">
+            <div className="form-group d-flex gap-3">
               <select
                 className="form-select"
                 value={selectedJournal?._id || ""}
@@ -90,10 +125,7 @@ export const AllArticles = () => {
                   </option>
                 ))}
               </select>
-            </div>
-
-            {/* Volume Dropdown */}
-            <div className="form-group">
+            
               <select
                 className="form-select"
                 value={selectedVolume || ""}
@@ -109,7 +141,6 @@ export const AllArticles = () => {
               </select>
             </div>
 
-            {/* Search */}
             <div className="d-flex">
               <input
                 type="text"
@@ -155,9 +186,9 @@ export const AllArticles = () => {
                 <div className="article-card row align-items-center mb-3" key={article._id}>
                   <div className="col-md-4">
                     <img
-                      src={article.image || "/assets/img/service/card-1.png"}
+                      src={`${BASE_URL}/${article.coverImage}` || "/assets/img/service/card-1.png"}
                       alt={article.title}
-                      className="img-fluid"
+                      className="img-fluid rounded-3 shadow"
                     />
                   </div>
                   <div className="col-md-8">
@@ -183,9 +214,12 @@ export const AllArticles = () => {
                         >
                           Abstract
                         </Link>
-                        <Link to={article.pdfUrl || "#"} className="article-btn" target="_blank">
+                        <button
+                          onClick={() => handlePrintPDF(article)}
+                          className="article-btn"
+                        >
                           PDF
-                        </Link>
+                        </button>
                       </div>
                     </div>
                   </div>

@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="container">
           <div className="row gy-4 align-items-start">
             {/* About */}
-            <div className="col-lg-6 col-md-12">
+            <div className="col-lg-5 col-md-12">
               <div className="footer-widget footer-about-widget">
                 <div className="footer-logo">
                   <div className="site-logo">
@@ -64,7 +64,7 @@ const Footer = () => {
             </div>
 
             {/* Contact Us */}
-            <div className="col-lg-2 col-md-4 col-sm-6">
+            <div className="col-lg-3 col-md-4 col-sm-6">
               <div className="footer-widget footer-newsletter-widget">
                 <h4 className="footer-title mb-3">Contact Us</h4>
                 <div className="footer-address">

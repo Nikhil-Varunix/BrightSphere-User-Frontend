@@ -8,17 +8,17 @@ const HomeSlider = () => {
         {/* ltn__slide-item */}
         <div
           className="ltn__slide-item ltn__slide-item-2 ltn__slide-item-3-normal--- bg-image d-flex align-items-end"
-          data-bs-bg="/assets/img/slider/21.png"
           style={{
             backgroundSize: "contain",
+            backgroundImage: `url("/assets/img/slider/21.png")`,
             backgroundPosition: "center bottom",
             backgroundRepeat: "no-repeat",
             backgroundColor: "#E9F4FF",
           }}
         >
           <div
-            className="container pb-4 text-center"
-            style={{ marginBottom: "260px", marginTop: "0px" }}
+            className="container text-center"
+            style={{ marginBottom: "220px", marginTop: "0px" }}
           >
             <h1
               className="slide-title fw-bold display-5"

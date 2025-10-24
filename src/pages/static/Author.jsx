@@ -1,13 +1,13 @@
 import React from 'react'
-// import { SubSlider } from './Components/SubSlider';
+import { SubSlider } from '../Components/SubSlider';
 import { AuthorGuidlines } from '../Components/AuthorGuidlines'
 
 
 export const Author = () => {
   return (
     <div>
-        {/* <SubSlider /> */}
-        e
+        <SubSlider />
+        
         <AuthorGuidlines />
     </div>
     

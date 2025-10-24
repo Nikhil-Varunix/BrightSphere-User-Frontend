@@ -55,7 +55,7 @@ export const OnlineSubForm = () => {
     country: Yup.string().required("Country is required"),
     articleTitle: Yup.string().required("Article title is required"),
     articleType: Yup.string().required("Article type is required"),
-    journal: Yup.string().required("Please select a journal"),
+    journal: Yup.string().required("Journal title is required"),
     abstract: Yup.string().required("Abstract is required"),
     files: Yup.array()
       .min(1, "Please upload at least one file")
@@ -183,8 +183,25 @@ export const OnlineSubForm = () => {
                     />
                   </div>
 
+                  {/* Journal */}
+                  <div className="form-floating col-md-6">
+                    <Field
+                      type="text"
+                      name="journal"
+                      className="form-control mb-2"
+                      id="journal"
+                      placeholder="Journal Title"
+                    />
+                    <label htmlFor="journal">Journal Title</label>
+                    <ErrorMessage
+                      name="journal"
+                      component="div"
+                      className="text-danger small"
+                    />
+                  </div>
+
                   {/* Article Title */}
-                  <div className="form-floating col-12">
+                  <div className="form-floating col-md-6">
                     <Field
                       type="text"
                       name="articleTitle"
@@ -201,7 +218,7 @@ export const OnlineSubForm = () => {
                   </div>
 
                   {/* Article Type */}
-                  <div className="form-floating col-md-6 mb-2">
+                  <div className="form-floating  mb-2">
                     <Field
                       as="select"
                       name="articleType"
@@ -225,28 +242,6 @@ export const OnlineSubForm = () => {
                     />
                   </div>
 
-                  {/* Journal */}
-                  <div className="form-floating col-md-6">
-                    <Field
-                      as="select"
-                      name="journal"
-                      className="form-select"
-                      id="journal"
-                    >
-                      <option value="">Select Journal</option>
-                      {journals.map((journal) => (
-                        <option key={journal._id} value={journal._id}>
-                          {journal.title}
-                        </option>
-                      ))}
-                    </Field>
-                    <label htmlFor="journal">Journal</label>
-                    <ErrorMessage
-                      name="journal"
-                      component="div"
-                      className="text-danger small"
-                    />
-                  </div>
 
                   {/* Abstract */}
                   <div className="form-floating col-12">

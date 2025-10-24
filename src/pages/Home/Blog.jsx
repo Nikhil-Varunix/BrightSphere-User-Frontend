@@ -71,71 +71,73 @@ export const Blog = () => {
   return (
     <div className="ltn__blog-area pt-50 pb-70 position-relative">
       <div className="container px-md-5">
-        {/* Section Header */}
-        <div className="text-center mb-4">
-          <h2 className="hed-title">
-            Explore the{" "}
-            <span className="highlight" style={{ color: "#2879D0" }}>
-              latest knowledge
-            </span>{" "}
-            with us.
-          </h2>
-          <p className="p-tag" style={{ color: "#101010" }}>
-            “Knowledge grows stronger when shared — discover our newest articles
-            and be part of the journey.”
-          </p>
-        </div>
+        <div className="px-md-5">
+          {/* Section Header */}
+          <div className="text-center mb-4">
+            <h2 className="hed-title">
+              Explore the{" "}
+              <span className="highlight" style={{ color: "#2879D0" }}>
+                latest knowledge
+              </span>{" "}
+              with us.
+            </h2>
+            <p className="p-tag" style={{ color: "#101010" }}>
+              “Knowledge grows stronger when shared — discover our newest articles
+              and be part of the journey.”
+            </p>
+          </div>
 
-        {/* Slick Slider */}
-        <Slider {...settings}>
-          {articles.map((article) => (
-            <div key={article._id} className="px-3 d-flex justify-content-center">
-              <div className="ltn__blog-item shadow rounded overflow-hidden card flex-fill">
-                <div className="ltn__blog-img">
-                  <Link to={`/articles/abstract/${article._id}`}>
-                    <img
-                      src={
-                        article.coverImage
-                          ? `${BASE_URL}/${article.coverImage}`
-                          : "/assets/img/product/details.png"
-                      }
-                      alt={article.title}
-                      className="img-fluid"
-                      style={{
-                        width: "100%",
-                        height: "250px",
-                        objectFit: "cover",
-                      }}
-                    />
-                  </Link>
-                </div>
-                <div className="ltn__blog-brief p-3">
-                  <div className="d-flex justify-content-between mb-2 text-muted small fw-bold">
-                    <span>
-                      <i className="far fa-eye me-2 text-dark"></i>
-                      {article.views || 0}
-                    </span>
-                    <span>
-                      <i className="fas fa-download me-2 text-dark"></i>
-                      {article.downloads || 0}
-                    </span>
-                  </div>
-                  <h4 className="ltn__blog-title mb-2">
-                    <Link
-                      to={`/articles/abstract/${article._id}`}
-                      className="text-decoration-none text-dark"
-                    >
-                      {article.title}
+          {/* Slick Slider */}
+          <Slider {...settings}>
+            {articles.map((article) => (
+              <div key={article._id} className="px-3 d-flex justify-content-center">
+                <div className="ltn__blog-item shadow rounded overflow-hidden card flex-fill">
+                  <div className="ltn__blog-img">
+                    <Link to={`/articles/abstract/${article._id}`}>
+                      <img
+                        src={
+                          article.coverImage
+                            ? `${BASE_URL}/${article.coverImage}`
+                            : "/assets/img/product/details.png"
+                        }
+                        alt={article.title}
+                        className="img-fluid"
+                        style={{
+                          width: "100%",
+                          height: "250px",
+                          objectFit: "cover",
+                        }}
+                      />
                     </Link>
-                  </h4>
-                  <p className="text-muted small mb-0">
-                    {truncateText(article.content)}
-                  </p>
+                  </div>
+                  <div className="ltn__blog-brief p-3">
+                    <div className="d-flex justify-content-between mb-2 text-muted small fw-bold">
+                      <span>
+                        <i className="far fa-eye me-2 text-dark"></i>
+                        {article.views || 0}
+                      </span>
+                      <span>
+                        <i className="fas fa-download me-2 text-dark"></i>
+                        {article.downloads || 0}
+                      </span>
+                    </div>
+                    <h4 className="ltn__blog-title mb-2">
+                      <Link
+                        to={`/articles/abstract/${article._id}`}
+                        className="text-decoration-none text-dark"
+                      >
+                        {article.title}
+                      </Link>
+                    </h4>
+                    <p className="text-muted small mb-0">
+                      {truncateText(article.content)}
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        </div>
       </div>
 
       {/* Inline styles for positioning arrows */}

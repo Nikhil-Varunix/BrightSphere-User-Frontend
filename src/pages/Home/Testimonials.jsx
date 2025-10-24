@@ -79,7 +79,7 @@ export const Testimonials = () => {
           {testimonials.map((t, index) => (
             <div
               key={index}
-              className="card border-0 flex-shrink-0 d-flex flex-column justify-content-between"
+              className="card border-0 flex-shrink-0 d-flex flex-column justify-content-between mb-3"
               style={{
                 borderRadius: "12px",
                 backgroundColor: "#fff",

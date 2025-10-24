@@ -4,15 +4,15 @@ export const AuthorGuidlines = () => {
   return (
     <div className="container py-5">
   <div className="content-section mx-auto">
-    <h2 style={{ color: "#143E6A" }}>Author Guidelines:</h2>
-    <p>
+    <h2 style={{ color: "#143E6A", fontWeight:510 }}>Author Guidelines:</h2>
+    <p className='fw-normal'>
       Bright Sphere Insights is an Open Access publisher that features original
       research across medical sciences, engineering, applied sciences, life
       sciences, and environmental sciences. We also welcome invited and
       submitted review articles. Authors are encouraged to contribute impactful
       and innovative work.
     </p>
-    <h6>1. General Requirements</h6>
+    <h3>1. General Requirements</h3>
     <ul>
       <li>
         Submissions must be original, unpublished, and not under review
@@ -24,17 +24,17 @@ export const AuthorGuidlines = () => {
       </li>
       <li>Upon publication, papers become the sole property of the journal.</li>
     </ul>
-    <p>
+    <p className='fw-normal'>
       Submit manuscripts via our online submission system or by email to:
       contact@onlinescientificresearch.com
     </p>
     <h3>2. Open Access Policy</h3>
-    <p>
+    <p className='fw-normal'>
       All published research is made freely available online. Readers worldwide
       may read, download, copy, and print articles without restrictions.{" "}
     </p>
     <h3>3. Disclaimer</h3>
-    <p>
+    <p className='fw-normal'>
       The views and opinions expressed in published articles are those of the
       authors and do not necessarily reflect the position of the publisher. No
       material may be reproduced without written permission.
@@ -49,9 +49,9 @@ export const AuthorGuidlines = () => {
       </li>
     </ul>
     <h3>5. Manuscript Preparation</h3>
-    <p>Manuscripts should be organized into the following sections:</p>
+    <p className='fw-normal'>Manuscripts should be organized into the following sections:</p>
     <div className="sub-section">
-      <h6>Structure</h6>
+      <h3>Structure</h3>
       <ol>
         <li>Title Page</li>
         <li>Abstract</li>
@@ -63,7 +63,7 @@ export const AuthorGuidlines = () => {
         <li>Tables</li>
         <li>Figures and Legends</li>
       </ol>
-      <h6>1.Title Page</h6>
+      <h3 className='fst-italic'>1.Title Page</h3>
       <ul>
         <li>Full manuscript title</li>
         <li>Author names and institutional affiliations</li>
@@ -72,7 +72,7 @@ export const AuthorGuidlines = () => {
         </li>
         <li>3–8 keywords for indexing</li>
       </ul>
-      <h6>2.Abstract</h6>
+      <h3 className='fst-italic'>2.Abstract</h3>
       <ul>
         <li>Maximum 250 words</li>
         <li>Written in complete sentences</li>
@@ -80,7 +80,7 @@ export const AuthorGuidlines = () => {
           Summarize objectives, methodology, main findings, and conclusions
         </li>
       </ul>
-      <h6>Abbreviations</h6>
+      <h3 className='fst-italic'>3.Abbreviations</h3>
       <ul>
         <li>Maximum 250 words</li>
         <li>
@@ -88,13 +88,13 @@ export const AuthorGuidlines = () => {
           Editors and Authors” by The Royal Society of Medicine
         </li>
       </ul>
-      <h6>Tables</h6>
+      <h3 className='fst-italic'>4.Tables</h3>
       <ul>
         <li>Number tables consecutively (Table 1, Table 2, etc.)</li>
         <li>Provide descriptive titles and explanatory footnotes</li>
         <li>Submit each table on a separate sheet, not as images</li>
       </ul>
-      <h6>Figures</h6>
+      <h3 className='fst-italic'>5.Figures</h3>
       <ul>
         <li>Submit figures in high resolution:</li>
         <li>Photographs: 300 dpi</li>
@@ -102,13 +102,13 @@ export const AuthorGuidlines = () => {
         <li>Use clear markers (arrows, symbols) to enhance contrast</li>
         <li>Group related illustrations together when possible</li>
       </ul>
-      <h6> Galley Proofs</h6>
+      <h3 className='fst-italic'> 6.Galley Proofs</h3>
       <ul>
         <li>Proofs are sent to the corresponding author.</li>
         <li>Corrections must be returned within 48 hours.</li>
         <li>Only minor typographical changes are permitted at this stage.</li>
       </ul>
-      <h6>7.Reprints</h6>
+      <h3 className='fst-italic'>7.Reprints</h3>
       <ul>
         <li>
           Authors may order printed reprints when returning galley proofs.
@@ -116,7 +116,7 @@ export const AuthorGuidlines = () => {
         <li>A reprint price list will be provided.</li>
         <li>Reprints are not complimentary.</li>
       </ul>
-      <h6>8.Ethics Policy</h6>
+      <h3 className='fst-italic'>8.Ethics Policy</h3>
       <ul>
         <li>
           Human studies must comply with the Declaration of Helsinki. Patient
@@ -129,7 +129,7 @@ export const AuthorGuidlines = () => {
         <li>Ethical approval statements must be included in the manuscript.</li>
       </ul>
       <h3>Withdrawal Policy</h3>
-      <p>
+      <p className='fw-normal'>
         Authors may request withdrawal of their manuscript by sending a written
         request to the editorial office.
       </p>
@@ -147,7 +147,7 @@ export const AuthorGuidlines = () => {
           be considered under special circumstances with editor approval.
         </li>
       </ul>
-      <p>
+      <p className='fw-normal'>
         We encourage authors to carefully consider their submission before
         sending it to avoid unnecessary withdrawals.
       </p>

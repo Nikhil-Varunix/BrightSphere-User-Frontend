@@ -10,7 +10,7 @@ export const About = () => {
       </section>
       <div className="container" style={{ padding: "50px 0" }}>
         <div className="content-section mx-auto">
-          <p className="abt-p">
+          <p className="abt-p fw-normal">
             BrightSphere Insights is a forward-thinking academic publishing platform
             that empowers researchers and institutions to share innovative work with a
             global audience. We publish peer-reviewed journals across the sciences,
@@ -34,7 +34,7 @@ export const About = () => {
             </li>
           </ul>
           <h3>Peer Review</h3>
-          <p>
+          <p className='fw-normal'>
             Ensuring Quality Through Transparency and Integrity we believe that peer
             review is the cornerstone of credible academic publishing. Our process is
             designed to uphold the highest standards of academic rigor, ethical
@@ -108,7 +108,7 @@ export const About = () => {
             </li>
           </ol>
           <h3>Open Access Policy</h3>
-          <p>
+          <p className='fw-normal'>
             At BrightSphere Insights, we believe that knowledge should be accessible
             to everyone—without financial, legal, or technical barriers. Our Open
             Access policy ensures that all research articles, reviews, case studies,
@@ -157,7 +157,7 @@ export const About = () => {
                 access as those in well-funded institutions.
               </li>
             </ul>
-            <p className="note">
+            <p className="note fw-normal">
               At BrightSphere Insights, we are committed to upholding transparency,
               integrity, and accessibility in academic publishing—because knowledge
               grows when it is shared.

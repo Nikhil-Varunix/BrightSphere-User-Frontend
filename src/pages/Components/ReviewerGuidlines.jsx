@@ -4,9 +4,9 @@ export const ReviewerGuidlines = () => {
   return (
     <div className="container py-5">
   <div className="content-section mx-auto">
-    <h2 style={{ color: "#143E6A" }}>Reviewer Guidelines:</h2>
+    <h2 style={{ color: "#143E6A", fontWeight:510 }}>Reviewer Guidelines:</h2>
     <h3>Role of a Reviewer</h3>
-    <p>
+    <p className='fw-normal'>
       Reviewers help maintain the journal’s academic quality by providing
       honest, objective, and constructive feedback on submitted manuscripts.
     </p>
@@ -29,7 +29,7 @@ export const ReviewerGuidlines = () => {
       </li>
     </ul>
     <h3>Review Timeline</h3>
-    <p>
+    <p className='fw-normal'>
       Please aim to submit your review within 2–3 weeks of accepting the
       invitation.
     </p>

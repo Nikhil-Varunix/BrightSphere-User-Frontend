@@ -6,7 +6,7 @@ export const APCGuidlines = () => {
   <div className="content-section mx-auto">
     <h2 style={{ color: "#143E6A" }}>APC:</h2>
     <h3>Article Processing Charges (APC)</h3>
-    <p>
+    <p className='fw-normal'>
       Bright Sphere Insights is an open access publisher, ensuring that all
       articles are freely accessible to readers worldwide without subscription
       fees. To maintain this publishing model and cover the costs of editorial
@@ -15,7 +15,7 @@ export const APCGuidlines = () => {
       accepted manuscripts.
     </p>
     <h3>1. When APC is Applied</h3>
-    <ul>
+    <ul className='ps-0' style={{listStyle:"none"}}>
       <li>
         There are no submission charges. Authors may submit and have their work
         reviewed free of cost.
@@ -30,7 +30,7 @@ export const APCGuidlines = () => {
       </li>
     </ul>
     <h6>2. What APC Covers</h6>
-    <ul>
+    <ul className='ps-0' style={{listStyle:"none"}}>
       <li>The APC supports:</li>
       <li>Editorial and peer review management</li>
       <li>Professional copyediting and formatting</li>
@@ -39,7 +39,7 @@ export const APCGuidlines = () => {
       <li>Long-term digital archiving for permanent access</li>
     </ul>
     <h3>3. Waivers and Discounts</h3>
-    <ul>
+    <ul className='ps-0' style={{listStyle:"none"}}>
       <li>
         Authors from low-income countries or those with genuine financial
         difficulties may apply for partial or full APC waivers.
@@ -52,15 +52,15 @@ export const APCGuidlines = () => {
         The decision on waivers is at the discretion of the editorial office.
       </li>
     </ul>
-    <h3>4. Refund Policy</h3>
-    <ul>
+    <h3 >4. Refund Policy</h3>
+    <ul className='ps-0' style={{listStyle:"none"}}>
       <li>
         Since APC is charged only after acceptance, it is non-refundable once
         payment has been made.
       </li>
     </ul>
     <h3>5. Transparency and Fairness</h3>
-    <ul>
+    <ul className='ps-0' style={{listStyle:"none"}}>
       <li>
         APC details, including the exact amount, will be made available on the
         journal’s website.

@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useJournal } from "../contexts/journalContext";
+
 
 export const Categories = () => {
+  const { journals } = useJournal();
+
+  console.log("Journals in Categories component:", journals);
+
   return (
     <section className="choose-section pt-190 pb-22">
       <div className="container my-5">
@@ -18,26 +24,21 @@ export const Categories = () => {
               </p>
             </div>
 
-            {/* Statement 1 */}
-            <div className="glass-card">
-              <Link className="text-decoration-none" to="/journals">
-                Journal of Earth And Environmental Science
-              </Link>
-            </div>
+            {
+              journals.length === 0 ? (
+                <p>Loading journal categories...</p>
+              ) : (
+                journals.slice(0, 4).map((journal) => (
+                  <div className="glass-card" key={journal._id}>
+                    <Link className="text-decoration-none" to={`/journals/journal-details/${journal._id}`}>
+                      {journal.title}
+                    </Link>
+                  </div>
+                ))
+              )
+            }
 
-            {/* Statement 2 */}
-            <div className="glass-card">
-              <Link className="text-decoration-none" to="/journals">
-                Journal of Modern Applied Sciences &amp; Engineering
-              </Link>
-            </div>
-
-            {/* Statement 3 */}
-            <div className="glass-card">
-              <Link className="text-decoration-none" to="/journals">
-                Journal of Health &amp; Medical Research
-              </Link>
-            </div>
+           
           </div>
 
           {/* Right Side: Image */}

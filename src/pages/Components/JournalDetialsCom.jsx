@@ -84,7 +84,7 @@ export const JournalDetialsCom = ({ journal }) => {
                   <div className="profile-info">
                     <h5>{editor.firstName} {editor.lastName}</h5>
                     <p>{editor.email}</p>
-                    <p>{editor.department} Department</p>
+                    <p><small>{editor.department}</small></p>
                     <p>{editor.university}</p>
                     <p>{editor.address}</p>
                   </div>

@@ -4,7 +4,7 @@ export const EditorGuidlines = () => {
   return (
     <div className="container py-5">
   <div className="content-section mx-auto">
-    <h2 style={{ color: "#143E6A" }}>Editor Guidelines:</h2>
+    <h2 style={{ color: "#143E6A", fontWeight:510 }}>Editor Guidelines:</h2>
     <h6>Editorial Responsibilities</h6>
     <ul>
       <li>

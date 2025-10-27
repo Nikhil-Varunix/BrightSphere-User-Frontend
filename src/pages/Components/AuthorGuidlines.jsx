@@ -25,8 +25,9 @@ export const AuthorGuidlines = () => {
       <li>Upon publication, papers become the sole property of the journal.</li>
     </ul>
     <p className='fw-normal'>
-      Submit manuscripts via our online submission system or by email to:
-      contact@onlinescientificresearch.com
+      Submit manuscripts via our online submission system or by email to: 
+      <a className='text-decoration-none' href="mailto:contact@brightsphereinsights.com" style={{color:"#2879D0"}}> contact@brightsphereinsights.com</a>
+      
     </p>
     <h3>2. Open Access Policy</h3>
     <p className='fw-normal'>

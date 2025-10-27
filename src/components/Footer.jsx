@@ -75,8 +75,8 @@ const Footer = () => {
                       </div>
                       <div className="footer-address-info">
                         <p>
-                          <a href="mailto:brightsphereinsights@gmail.com">
-                            brightsphereinsights@gmail.com
+                          <a href="mailto:contact@brightsphereinsights.com">
+                            contact@brightsphereinsights.com
                           </a>
                         </p>
                       </div>

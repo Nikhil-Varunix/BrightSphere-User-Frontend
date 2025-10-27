@@ -26,7 +26,7 @@ export const OurJournals = () => {
                 className="mt-2"
                 dangerouslySetInnerHTML={{ __html: j.content }}
               />
-              
+
               <div className="d-flex gap-2 mt-3  journal-buttons">
                 <Link
                   to={`/journals/journal-details/${j._id}`}
@@ -47,14 +47,29 @@ export const OurJournals = () => {
             <div
               className={`col-md-6 d-flex justify-content-center `}
             >
-              <div className={`w-100 ${isOdd ? "text-start" : "text-end"}`}>
-                <img
-                  src={`${BASE_URL}/${j.coverImage}`}
-                  alt={j.title}
-                  className="img-fluid w-75 rounded-5 shadow-lg shadow"
-                  style={{ maxHeight: "400px", objectFit: "cover" }}
-                />
+              <div className={`position-relative w-100 d-flex justify-content-${isOdd ? "start" : "end"}`}>
+                <div className="position-relative w-75">
+                  <img
+                    src={`${BASE_URL}/${j.coverImage}`}
+                    alt={j.title}
+                    className="img-fluid rounded-5 shadow-lg shadow w-100"
+                    style={{ maxHeight: "400px", objectFit: "cover" }}
+                  />
+                  <span
+                    className="position-absolute text-white px-2 py-1 rounded"
+                    style={{
+                      backgroundColor: "rgba(106, 107, 107, 0.4)",
+                      bottom: "10px",
+                      right: isOdd ? "auto" : "10px",
+                      left: isOdd ? "10px" : "auto",
+                      fontSize: "0.9rem",
+                    }}
+                  >
+                    ISSN: {j.issn}
+                  </span>
+                </div>
               </div>
+
             </div>
           </div>
         );

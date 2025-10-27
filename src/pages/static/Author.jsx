@@ -6,7 +6,13 @@ import { AuthorGuidlines } from '../Components/AuthorGuidlines'
 export const Author = () => {
   return (
     <div>
-        <SubSlider />
+         <SubSlider
+                      data={{
+                        backgroundImage: "/assets/img/banner/guidelines.jpg",
+                        title: "Clear guidelines lead to stronger research",
+                        highlight: "and impactful publications.",
+                      }}
+                    />
         
         <AuthorGuidlines />
     </div>

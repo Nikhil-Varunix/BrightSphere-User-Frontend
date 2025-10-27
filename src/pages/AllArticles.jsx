@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { SubSlider } from "./Components/SubSlider";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useJournal } from "./contexts/journalContext";
 import axios from "axios";
@@ -100,7 +99,26 @@ ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
 
   return (
     <div>
-      <SubSlider />
+        <section
+        className="hero-section hero-section-2  text-center text-dark"
+        style={{
+          backgroundImage: `url("/assets/img/banner/planet-earth-surrounded-by-nature-vegetation.jpg")`,
+          backgroundPosition: "left center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div className="hero-overlay d-flex flex-column justify-content-center align-items-center">
+          <h1 className="page-title" style={{ color: "#143E6A" }}>
+            A single article can{" "}
+            <span style={{ color: "#2879D0" }} className="highlight">
+              spark a thousand ideas
+            </span>
+            , but a journal <br /> preserves them for generations.
+          </h1>
+        </div>
+      </section>
+      
       <div className="container py-5">
         <h1 className="journal-heading">
           <span>Our Journals /</span>{" "}

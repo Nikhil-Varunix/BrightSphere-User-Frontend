@@ -4,7 +4,9 @@ import { ArticleList } from './Components/ArticleList'
 
 export const Articles = () => {
   return (
-    <div><SubSlider />
-    <ArticleList /></div>
+    <div>
+      <SubSlider />
+      <ArticleList />
+    </div>
   )
 }

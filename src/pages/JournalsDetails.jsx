@@ -29,20 +29,26 @@ export const JournalsDetails = () => {
 
   return (
     <div>
-      <div
-        className="ltn__breadcrumb-area text-center bg-overlay-white-30 bg-image"
-        style={{ backgroundImage: `url("/assets/img/banner/about-banner.png")` }}
+   <section
+        className="hero-section hero-section-2  text-center text-dark"
+        style={{
+          backgroundImage: `url("/assets/img/banner/planet-earth-surrounded-by-nature-vegetation.jpg")`,
+          backgroundPosition: "left center",
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+        }}
       >
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-12">
-              <div className="ltn__breadcrumb-inner">
-                <h1 className="page-title">{journal.title}</h1>
-              </div>
-            </div>
-          </div>
+        <div className="hero-overlay d-flex flex-column justify-content-center align-items-center">
+          <h1 className="page-title" style={{ color: "#143E6A" }}>
+            A single article can{" "}
+            <span style={{ color: "#2879D0" }} className="highlight">
+              spark a thousand ideas
+            </span>
+            , but a journal <br /> preserves them for generations.
+          </h1>
         </div>
-      </div>
+      </section>
+      
 
       <JournalDetialsCom journal={journal} />
     </div>

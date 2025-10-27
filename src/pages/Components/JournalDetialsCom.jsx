@@ -64,7 +64,7 @@ export const JournalDetialsCom = ({ journal }) => {
         <div className="tab-pane fade show active" id="tab1" role="tabpanel">
           <div className="content-section mx-auto">
             <h3>{journal.subTitle}</h3>
-            <div dangerouslySetInnerHTML={{ __html: journal.content }} />
+            <div className="fw-normal" dangerouslySetInnerHTML={{ __html: journal.content }} />
           </div>
         </div>
 

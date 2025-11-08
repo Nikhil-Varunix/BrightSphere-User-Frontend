@@ -8,7 +8,7 @@ import { Editor } from './pages/static/Editor';
 import { Reviewer } from './pages/static/Reviewer';
 import { APC } from './pages/static/APC';
 import { About } from './pages/static/About'
-import { Articles } from './pages/articles';
+// import { Articles } from './pages/articles';
 import { JournalsDetails } from './pages/JournalsDetails';
 import { AllArticles } from './pages/allArticles';
 import { Abstract } from './pages/Abstract';
@@ -17,6 +17,7 @@ import { TermsConditions } from './pages/static/TermsConditions';
 import { OnlineSubForm } from './pages/Components/OnlineSubForm';
 import { useEffect } from 'react';
 import { Toaster } from "react-hot-toast";
+import AllArticlesInPress from './pages/AllArticlesInPress';
 
 function App() {
   return (
@@ -33,9 +34,10 @@ function App() {
         <Route path="/guidlines/reviewer" element={<Reviewer />} />
         <Route path="/guidlines/apc" element={<APC />} />
         <Route path="/about" element={<About />} />
-        <Route path="/Journals/articles" element={<Articles />} />
+        {/* <Route path="/Journals/articles" element={<Articles />} /> */}
         <Route path="/journals/journal-details/:id" element={<JournalsDetails />} />
         <Route path="/journals/all-articles/:journalId" element={<AllArticles />} />
+        <Route path="/journals/all-articles/in-press/:journalId" element={<AllArticlesInPress />} />
         <Route path="/articles/abstract/:articleId" element={<Abstract />} />
         <Route path="/privacy-policy" element={<PrivacyPolicy1 />} />
         <Route path="/terms-conditions" element={<TermsConditions />} />

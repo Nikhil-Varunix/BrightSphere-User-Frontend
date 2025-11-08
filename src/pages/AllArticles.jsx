@@ -94,12 +94,43 @@ ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
     `;
     doc.setFontSize(12);
     doc.text(content, 10, 10, { maxWidth: 190 });
-    doc.save(`${article.title}.pdf`);
+    // 🔹 Instead of saving, open in new tab
+    const pdfBlob = doc.output("blob");
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    window.open(pdfUrl, "_blank");
+  };
+
+  const handleDownloadXML = (article) => {
+    if (!article) return;
+
+    // Create clean XML structure
+    const xmlContent = `
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <title>${article.title}</title>
+  <author>${article.author}</author>
+  <journal>${article.journal?.title || ""}</journal>
+  <type>${article.articleType || ""}</type>
+  <published>${article.publishedAt ? new Date(article.publishedAt).toISOString() : ""}</published>
+  <content>${article.content.replace(/<\/?[^>]+(>|$)/g, "")}</content>
+</article>
+  `.trim();
+
+    // Create Blob and trigger download
+    const blob = new Blob([xmlContent], { type: "application/xml" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${article.title.replace(/\s+/g, "_")}.xml`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
     <div>
-        <section
+      <section
         className="hero-section hero-section-2  text-center text-dark"
         style={{
           backgroundImage: `url("/assets/img/banner/planet-earth-surrounded-by-nature-vegetation.jpg")`,
@@ -118,10 +149,10 @@ ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
           </h1>
         </div>
       </section>
-      
+
       <div className="container py-5">
         <h1 className="journal-heading">
-          <span>Our Journals /</span>{" "}
+          <span><Link style={{ color: "rgb(20, 62, 106)" }} to={"/journals"}>Our Journals</Link> /</span>{" "}
           {selectedJournal ? selectedJournal.title : "Select Journal"} / Articles
         </h1>
 
@@ -143,7 +174,7 @@ ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
                   </option>
                 ))}
               </select>
-            
+
               <select
                 className="form-select"
                 value={selectedVolume || ""}
@@ -151,7 +182,7 @@ ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
                 disabled={!selectedJournal?.volumes?.length}
               >
                 <option value="">Select Volume</option>
-                {selectedJournal?.volumes.map((v) => (
+                {selectedJournal?.volumes?.slice().reverse().map((v) => (
                   <option key={v._id} value={v._id}>
                     {v.volumeName}
                   </option>
@@ -232,11 +263,21 @@ ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
                         >
                           Abstract
                         </Link>
+
+                        {/* PDF Download */}
                         <button
                           onClick={() => handlePrintPDF(article)}
-                          className="article-btn"
+                          className="article-btn me-2"
                         >
                           PDF
+                        </button>
+
+                        {/* XML Download */}
+                        <button
+                          onClick={() => handleDownloadXML(article)}
+                          className="article-btn"
+                        >
+                          XML
                         </button>
                       </div>
                     </div>

@@ -75,9 +75,10 @@ const Footer = () => {
                       </div>
                       <div className="footer-address-info">
                         <p>
-                          <a href="mailto:contact@brightsphereinsights.com">
+                          <a href="mailto:contact@brightsphereinsights.com" target="_blank">
                             contact@brightsphereinsights.com
                           </a>
+
                         </p>
                       </div>
                     </li>

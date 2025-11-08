@@ -27,18 +27,20 @@ export const Abstract = () => {
     fetchArticle();
   }, [articleId]);
 
+  // 🔹 Generate PDF
   const handlePrintPDF = async () => {
     if (!article) return;
 
-    // Increment download count
     try {
       await axios.patch(`${API_URL}/articles/download/${articleId}`);
-      setArticle((prev) => ({ ...prev, downloads: (prev.downloads || 0) + 1 }));
+      setArticle((prev) => ({
+        ...prev,
+        downloads: (prev.downloads || 0) + 1,
+      }));
     } catch (err) {
       console.error("Failed to increment download count:", err);
     }
 
-    // Generate PDF
     const doc = new jsPDF();
     const content = `
 ${article.title}
@@ -46,17 +48,54 @@ ${article.title}
 Author: ${article.author}
 Type: ${article.articleType}
 Journal: ${article.journal?.title}
-Published: ${article.publishedAt ? new Date(article.publishedAt).toLocaleDateString() : ''}
+Published: ${
+      article.publishedAt
+        ? new Date(article.publishedAt).toLocaleDateString()
+        : ""
+    }
 
 Abstract:
 ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
     `;
     doc.setFontSize(12);
     doc.text(content, 10, 10, { maxWidth: 190 });
-    doc.save(`${article.title}.pdf`);
+
+    const pdfBlob = doc.output("blob");
+    const pdfUrl = URL.createObjectURL(pdfBlob);
+    window.open(pdfUrl, "_blank");
   };
 
-  if (!article) return <p className="text-center my-5">Loading article...</p>;
+  // 🔹 Generate XML
+  const handleDownloadXML = () => {
+    if (!article) return;
+
+    const xmlContent = `
+<?xml version="1.0" encoding="UTF-8"?>
+<article>
+  <title>${article.title}</title>
+  <author>${article.author}</author>
+  <type>${article.articleType || ""}</type>
+  <journal>${article.journal?.title || ""}</journal>
+  <published>${
+    article.publishedAt ? new Date(article.publishedAt).toISOString() : ""
+  }</published>
+  <content>${article.content.replace(/<\/?[^>]+(>|$)/g, "")}</content>
+</article>
+    `.trim();
+
+    const blob = new Blob([xmlContent], { type: "application/xml" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `${article.title.replace(/\s+/g, "_")}.xml`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  };
+
+  if (!article)
+    return <p className="text-center my-5">Loading article...</p>;
 
   const publishedDate = article.publishedAt
     ? new Date(article.publishedAt).toLocaleDateString("en-GB", {
@@ -70,7 +109,11 @@ ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
     <div className="container my-5">
       {/* Article Image */}
       <img
-        src={article.coverImage ? `${BASE_URL}/${article.coverImage}` : "/assets/img/product/details.png"}
+        src={
+          article.coverImage
+            ? `${BASE_URL}/${article.coverImage}`
+            : "/assets/img/product/details.png"
+        }
         alt={article.title}
         className="img-fluid rounded mb-4 w-100"
         style={{ height: "200px", objectFit: "cover" }}
@@ -109,10 +152,13 @@ ${article.content.replace(/<\/?[^>]+(>|$)/g, "")}
         </p>
       </div>
 
-      {/* PDF Button */}
+      {/* PDF + XML Buttons */}
       <div className="text-end">
-        <button onClick={handlePrintPDF} className="btn btn-primary">
+        <button onClick={handlePrintPDF} className="btn btn-primary me-2">
           PDF
+        </button>
+        <button onClick={handleDownloadXML} className="btn btn-primary">
+          XML
         </button>
       </div>
     </div>

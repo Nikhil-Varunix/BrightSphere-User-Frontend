@@ -9,7 +9,7 @@ const HomeSlider = () => {
         <div
           className="ltn__slide-item ltn__slide-item-2 ltn__slide-item-3-normal--- bg-image d-flex align-items-end"
           style={{
-            backgroundSize: "contain",
+            backgroundSize: "70%",
             backgroundImage: `url("/assets/img/slider/21.png")`,
             backgroundPosition: "center bottom",
             backgroundRepeat: "no-repeat",

@@ -27,7 +27,7 @@ export const OurJournals = () => {
                 dangerouslySetInnerHTML={{ __html: j.content }}
               />
 
-              <div className="d-flex gap-2 mt-3  journal-buttons">
+              <div className="d-flex gap-1 mt-3  journal-buttons">
                 <Link
                   to={`/journals/journal-details/${j._id}`}
                   className="btn btn-outline-primary"
@@ -38,7 +38,13 @@ export const OurJournals = () => {
                   to={`/journals/all-articles/${j._id}`}
                   className="btn btn-outline-primary"
                 >
-                  Articles
+                  Archives
+                </Link>
+                <Link
+                  to={`/journals/all-articles/in-press/${j._id}`}
+                  className="btn btn-outline-primary"
+                >
+                  Article in Press
                 </Link>
               </div>
             </div>
@@ -55,6 +61,7 @@ export const OurJournals = () => {
                     className="img-fluid rounded-5 shadow-lg shadow w-100"
                     style={{ maxHeight: "400px", objectFit: "cover" }}
                   />
+                  {j.issn && 
                   <span
                     className="position-absolute text-white px-2 py-1 rounded"
                     style={{
@@ -67,6 +74,7 @@ export const OurJournals = () => {
                   >
                     ISSN: {j.issn}
                   </span>
+                  }
                 </div>
               </div>
 

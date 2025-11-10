@@ -9,7 +9,7 @@ const ChooseUs = () => {
   <p className="p-tag">
     Where trust meets talent, and knowledge finds its voice.
   </p>
-  <div className="container my-5">
+  <div className=" my-5">
     <div className="cards-wrapper">
       {/* Card 1 */}
       <div className="choose-card">

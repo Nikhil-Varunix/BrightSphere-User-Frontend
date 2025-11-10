@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
@@ -35,6 +35,32 @@ const AllArticlesInPress = () => {
     if (journalId) fetchArticles();
   }, [journalId]);
 
+  const downloadXML = (article) => {
+    const plainTextContent = article.content?.replace(/<\/?[^>]+(>|$)/g, "") || "";
+
+    const xmlData = `
+<article>
+  <title>${article.title}</title>
+  <author>${article.author}</author>
+  <journal>${article.journal?.title || ""}</journal>
+  <description>${plainTextContent}</description>
+  <pdf>${article.document ? `${BASE_URL}/${article.document}` : ""}</pdf>
+</article>
+`.trim();
+
+    const blob = new Blob([xmlData], { type: "application/xml" });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `${article.title.replace(/\s+/g, "_")}.xml`;
+    a.click();
+
+    URL.revokeObjectURL(url);
+  };
+
+
+
   return (
     <>
       {/* ✅ Hero Section */}
@@ -61,7 +87,7 @@ const AllArticlesInPress = () => {
       {/* ✅ Articles Table */}
       <div className="container py-5">
         <h1 className="journal-heading mb-4">
-          <span>Our Journals /</span> {journalTitle} / Articles In Press
+          <span><Link style={{ color: "rgb(20, 62, 106)" }} to={"/journals"}>Our Journals</Link> /</span>{" "} {journalTitle} / Articles In Press
         </h1>
 
         {loading ? (
@@ -79,7 +105,8 @@ const AllArticlesInPress = () => {
                       <th>Title</th>
                       <th>Description</th>
                       <th>Author</th>
-                      <th>PDF</th>
+                      <th>Actions</th>
+
                     </tr>
                   </thead>
 
@@ -88,7 +115,7 @@ const AllArticlesInPress = () => {
                       <tr key={article._id}>
                         {/* ✅ Title */}
                         <td>
-                          {i+1}
+                          {i + 1}
                         </td>
                         <td className="text-truncate" style={{ maxWidth: "250px" }}>
                           {article.title}
@@ -122,19 +149,25 @@ const AllArticlesInPress = () => {
                         </td>
 
                         {/* ✅ PDF */}
-                        <td>
+                          <td className="journal-buttons">
                           {article.document ? (
                             <a
                               href={`${BASE_URL}/${article.document}`}
                               target="_blank"
                               rel="noreferrer"
-                              className="btn text-white online-submission-btn"
+                              className="btn text-white online-submission-btn d-inline"
                             >
-                              View PDF
+                              PDF
                             </a>
                           ) : (
                             <span className="text-muted">No PDF</span>
                           )}
+                          <button
+                            className="btn btn-outline-primary"
+                            onClick={() => downloadXML(article)}
+                          >
+                            XML
+                          </button>
                         </td>
                       </tr>
                     ))}

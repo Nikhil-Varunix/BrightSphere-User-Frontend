@@ -28,14 +28,14 @@ const HomeSlider = () => {
               }}
             >
               Transform ideas into impact. <br />
-              Publish your journals
+              Share your research with the world
               <span
                 style={{
                   fontFamily: '"Pacifico", cursive',
                   color: "#2879D0",
                 }}
               >
-                Today.
+                — Publish Today.
               </span>
             </h1>
             <p
